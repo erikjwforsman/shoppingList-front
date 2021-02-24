@@ -2,7 +2,10 @@ import React, {useState, useEffect} from "react"
 import { gql, useQuery,useApolloClient } from "@apollo/client"
 import LoginForm from "./components/LoginForm"
 import User from "./components/User"
-//import { FIND_USER } from "./queries"
+import { FIND_USER } from "./queries"
+//Siirto alkaa tästä
+import Contacts from "./components/Contacts"
+import ShoppingList from "./components/ShoppingList"
 
 
 const App = () => {
@@ -11,6 +14,11 @@ const App = () => {
   const [user, setUser] = useState(null)
 //  const result = useQuery(FIND_USER)
   const client = useApolloClient()
+
+  const result = useQuery(FIND_USER, {
+    variables: {nameToSearch: user}
+  })
+
 
 
   useEffect(() => {
@@ -30,6 +38,10 @@ const App = () => {
   //  return <div>loading...</div>
   //}
 
+  if(result.loading){
+    return <p>loading...</p>
+  }
+
   const logOut = () => {
     setToken(null)
     setUser(null)
@@ -39,6 +51,7 @@ const App = () => {
   }
 
 //  console.log(result.data.findUser)
+
 
   if (!token) {
     return(
@@ -50,11 +63,25 @@ const App = () => {
     )
   }
 
+  const shopping_lists = result.data.findUser.user_shopping_lists
+  const contacts = result.data.findUser.userContacts
+
 
   return (
     <div>
       <button onClick={logOut} >logout</button>
-      <User user={user}/>
+      <div>
+        <Contacts user={user} contacts={contacts}/>
+        Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
+        <h3>Listasi:</h3>
+        {shopping_lists.map(l =>
+
+          <ShoppingList key={l.id} shoppingList={l}/>
+
+        )}
+
+
+      </div>
     </div>
   )
 }
