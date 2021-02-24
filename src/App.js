@@ -6,6 +6,7 @@ import User from "./components/User"
 
 
 const App = () => {
+
   const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
 //  const result = useQuery(FIND_USER)
@@ -37,7 +38,6 @@ const App = () => {
     client.resetStore()
   }
 
-//  console.log(result.data.findUser)
 
   if (!token) {
     return(
@@ -55,7 +55,7 @@ const App = () => {
       <div>Hello World!!!</div>
       <User user={user}/>
       <div>
-        {user}
+        End
         <br />
         <button onClick={logOut} >logout</button>
       </div>

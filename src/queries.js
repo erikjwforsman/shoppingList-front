@@ -1,8 +1,11 @@
 import { gql } from "@apollo/client"
 
+//findByUsername ($nameToSearch: String!)
+//$nameToSearch
+
 export const FIND_USER = gql`
-  query findUser($username:String!){
-    findUser(username:$username){
+  query findByUsername ($nameToSearch: String!){
+    findUser(username:$nameToSearch){
       username
       id
       userContacts{
@@ -11,6 +14,12 @@ export const FIND_USER = gql`
       }
       user_shopping_lists{
         listName
+        id
+        listMembers{
+          id
+          username
+        }
+
         items{
           itemName
           itemNote

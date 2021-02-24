@@ -45,10 +45,10 @@ const query = gql`
   }
 `
 
-client.query({ query })
-  .then((response) => {
-    console.log(response.data)
-  })
+//client.query({ query })
+  //.then((response) => {
+    //console.log(response.data)
+  //})
 
 ReactDOM.render(
   <ApolloProvider client={client}>
