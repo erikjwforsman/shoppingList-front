@@ -4,7 +4,7 @@ import { gql } from "@apollo/client"
 //$nameToSearch
 
 export const FIND_USER = gql`
-  query findByUsername ($nameToSearch: String!){
+  query findByUsername ($nameToSearch: String){
     findUser(username:$nameToSearch){
       username
       id

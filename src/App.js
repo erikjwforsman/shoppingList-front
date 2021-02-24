@@ -38,6 +38,7 @@ const App = () => {
     client.resetStore()
   }
 
+//  console.log(result.data.findUser)
 
   if (!token) {
     return(
@@ -52,13 +53,8 @@ const App = () => {
 
   return (
     <div>
-      <div>Hello World!!!</div>
+      <button onClick={logOut} >logout</button>
       <User user={user}/>
-      <div>
-        End
-        <br />
-        <button onClick={logOut} >logout</button>
-      </div>
     </div>
   )
 }

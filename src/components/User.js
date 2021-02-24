@@ -1,7 +1,8 @@
 import React, {useEffect, useState}  from "react"
 import { FIND_USER } from "../queries"
 import { gql, useQuery,useApolloClient, useLazyQuery } from "@apollo/client"
-
+import Contacts from "./Contacts"
+import ShoppingList from "./ShoppingList"
 
 const User =  ({user}) => {
 
@@ -55,6 +56,23 @@ console.log("user:",user)
 
   return (
     <div>
+      <Contacts user={user} contacts={contacts}/>
+      Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
+      <h3>Listasi:</h3>
+      {shopping_lists.map(l =>
+
+        <ShoppingList key={l.id} shoppingList={l}/>
+
+      )}
+
+
+    </div>
+  )
+}
+{/*
+  return (
+    <div>
+      <Contacts user={user} contacts={contacts}/>
       Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
       <h3>Listasi:</h3>
       {shopping_lists.map(l =>
@@ -63,6 +81,7 @@ console.log("user:",user)
           <br/>
           Käyttäjät: {l.listMembers.map(member => member.username)}
           <br/>
+          Tuotteet: <br/>
           {l.items.map(item =>
             <div key={item.id}>
               {item.itemName} {item.itemAmount} <br/>
@@ -75,17 +94,12 @@ console.log("user:",user)
       )}
 
 
-      <h3>Kontaktisi:</h3>
-      {contacts.map(c =>
-        <div key={c.id}>
-          *{c.username}
-        </div>
-      )}
-
     </div>
-
-
   )
-}
+
+  */}
+
+
+
 
 export default User
