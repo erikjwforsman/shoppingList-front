@@ -17,8 +17,8 @@ const ShoppingList = (props) => {
         <div>
         {props.shoppingList.listName}
         <button onClick={toggleExpansion}>Sulje</button>
-        <button>Lisää tuote</button>
-        <button>Poista lista</button>
+        <button>Editoi listaa</button>
+        <button>Lisää Tuote</button>
         <div>
         <div>
           {

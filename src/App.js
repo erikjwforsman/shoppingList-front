@@ -3,7 +3,6 @@ import { gql, useQuery,useApolloClient } from "@apollo/client"
 import LoginForm from "./components/LoginForm"
 import User from "./components/User"
 import { FIND_USER } from "./queries"
-//Siirto alkaa tästä
 import Contacts from "./components/Contacts"
 import ShoppingList from "./components/ShoppingList"
 
@@ -12,7 +11,6 @@ const App = () => {
 
   const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
-//  const result = useQuery(FIND_USER)
   const client = useApolloClient()
 
   const result = useQuery(FIND_USER, {
@@ -31,12 +29,7 @@ const App = () => {
     if (user) {
       setUser(user)
     }
-
   }, [])
-
-//  if(result.loading){
-  //  return <div>loading...</div>
-  //}
 
   if(result.loading){
     return <p>loading...</p>
@@ -49,9 +42,6 @@ const App = () => {
     localStorage.clear()
     client.resetStore()
   }
-
-//  console.log(result.data.findUser)
-
 
   if (!token) {
     return(
@@ -66,24 +56,38 @@ const App = () => {
   const shopping_lists = result.data.findUser.user_shopping_lists
   const contacts = result.data.findUser.userContacts
 
+  console.log(result.data.findUser)
 
   return (
     <div>
-      <button onClick={logOut} >logout</button>
       <div>
-        <Contacts user={user} contacts={contacts}/>
-        Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
-        <h3>Listasi:</h3>
-        {shopping_lists.map(l =>
-
-          <ShoppingList key={l.id} shoppingList={l}/>
-
-        )}
-
-
+        {user}
+        <button onClick={logOut} >logout</button>
+      </div>
+      <div>
+        <Main />
       </div>
     </div>
   )
 }
+
+{/*
+  return (
+    <div>
+      <div>
+      <Contacts user={user} contacts={contacts}/>
+      <button onClick={logOut} >logout</button>
+      </div>
+      <div>
+        Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
+        <h3>Listasi:</h3>
+        {shopping_lists.map(l =>
+          <ShoppingList key={l.id} shoppingList={l}/>
+        )}
+      </div>
+    </div>
+  )
+  */}
+
 
 export default App;
