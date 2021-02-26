@@ -3,14 +3,21 @@ import { gql, useQuery,useApolloClient } from "@apollo/client"
 import LoginForm from "./components/LoginForm"
 import User from "./components/User"
 import { FIND_USER } from "./queries"
-import Contacts from "./components/Contacts"
-import ShoppingList from "./components/ShoppingList"
+//import Contacts from "./components/Contacts"
+//import ShoppingList from "./components/ShoppingList"
 
+import Main from "./components/Main"
+import EditShoppingList from "./components/EditShoppingList"
+import AddNewList from "./components/AddNewList"
+import EditItem from "./components/EditItem"
 
 const App = () => {
 
   const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
+  const [page, setPage] = useState("main")
+  const [pageProperties, setPageProperties] = useState(null)
+  const [sender, setSender] = useState(null)
   const client = useApolloClient()
 
   const result = useQuery(FIND_USER, {
@@ -22,7 +29,7 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem("shopping_list-user-token")
     const user = localStorage.getItem("user")
-    console.log("APPIN User", user)
+
     if (token) {
       setToken(token)
     }
@@ -38,7 +45,6 @@ const App = () => {
   const logOut = () => {
     setToken(null)
     setUser(null)
-    console.log("Tyhjennys:", user)
     localStorage.clear()
     client.resetStore()
   }
@@ -53,41 +59,45 @@ const App = () => {
     )
   }
 
+  const Choice = () => {
+    if (page === "main") return(<Main shopping_lists={shopping_lists} contacts={contacts} user={user} selectPage={selectPage} selectPageProperties={selectPageProperties} selectSender={selectSender}/>)
+
+    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender}/>)
+
+    if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender}/>)
+  }
+  console.log("sender", sender)
+
   const shopping_lists = result.data.findUser.user_shopping_lists
   const contacts = result.data.findUser.userContacts
 
-  console.log(result.data.findUser)
+  const selectPage = (paikka) => {
+    setPage(paikka)
+  }
 
+  const selectPageProperties = (uniikki) => {
+    setPageProperties(uniikki)
+  }
+
+  const selectSender = (testi) => {
+    setSender(testi)
+  }
+
+  //console.log("Sivu:",page)
+  //console.log("properties:", pageProperties)
   return (
     <div>
       <div>
         {user}
         <button onClick={logOut} >logout</button>
+
       </div>
       <div>
-        <Main />
+        <Choice />
       </div>
     </div>
   )
 }
-
-{/*
-  return (
-    <div>
-      <div>
-      <Contacts user={user} contacts={contacts}/>
-      <button onClick={logOut} >logout</button>
-      </div>
-      <div>
-        Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
-        <h3>Listasi:</h3>
-        {shopping_lists.map(l =>
-          <ShoppingList key={l.id} shoppingList={l}/>
-        )}
-      </div>
-    </div>
-  )
-  */}
 
 
 export default App;

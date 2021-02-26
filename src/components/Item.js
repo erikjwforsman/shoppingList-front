@@ -7,7 +7,29 @@ const Item = (props) => {
     setExpansion(!expanded)
   }
 
+  console.log(props)
+
+  const editPage = "editItem"
+
   const showItemDetails = () => {
+    if (props.open===true){
+      return  <div>
+                <div>{props.item.itemName} {props.item.itemAmount}
+                  <button>Poista</button>
+                  <button onClick={() =>{
+                    {props.selectPageProperties(props.item)}
+                    {props.selectSender(props.curSender)}
+                    {props.selectPage(editPage)}
+
+
+                  }
+                  }>Muokkaa</button>
+                </div>
+
+                <div>{props.item.itemNote}</div>
+              </div>
+    }
+
     if (!expanded){
       return (
         <div>{props.item.itemName} {props.item.itemAmount}<button onClick={toggleExpansion}>Auki</button></div>
@@ -22,7 +44,7 @@ const Item = (props) => {
     )
   }
 
-  console.log(props)
+  //console.log(props)
 
   return(
     <div>{showItemDetails()}</div>

@@ -13,7 +13,7 @@ const Contacts = (props) => {
     console.log(props.user)
     if (expanded) {
       return(<div>
-        <div>{props.user} <button onClick={toggleExpansion}>Pienennä</button></div>
+        <div><button onClick={toggleExpansion}>Pienennä</button></div>
         {props.contacts.map(c =>
           <div key={c.id}>
             *{c.username}
@@ -23,7 +23,7 @@ const Contacts = (props) => {
       </div>)
     }
     return(<div>
-      <div>{props.user} <button onClick={toggleExpansion}>Kontaktit</button></div>
+      <div><button onClick={toggleExpansion}>Kontaktit</button></div>
       </div>)
   }
 
