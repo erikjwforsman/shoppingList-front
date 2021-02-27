@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import { gql, useQuery,useApolloClient } from "@apollo/client"
 import Contacts from "./Contacts"
 import ShoppingList from "./ShoppingList"
+import AddNewList from "./AddNewList"
 //import { FIND_USER } from "../queries"
 
 
@@ -17,6 +18,7 @@ const Main = (props) => {
           <ShoppingList key={l.id} shoppingList={l} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} selectSender={props.selectSender}/>
         )}
       </div>
+      <AddNewList />
     </div>
   )
 }

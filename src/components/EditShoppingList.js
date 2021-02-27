@@ -1,6 +1,6 @@
 import React from "react"
 import Item from "./Item"
-
+import AddNewItem from "./AddNewItem"
 
 const EditShoppingList = (props) => {
   console.log(props)
@@ -35,7 +35,7 @@ const EditShoppingList = (props) => {
       )}
     </div>
 
-
+      <AddNewItem />
 
     </div>
   )
