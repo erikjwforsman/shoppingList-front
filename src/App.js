@@ -21,8 +21,10 @@ const App = () => {
   const client = useApolloClient()
 
   const result = useQuery(FIND_USER, {
-    variables: {nameToSearch: user}
-  })
+    variables: {nameToSearch: user},
+    pollInterval: 2000
+
+  }) //Lisää jossain vaiheessa pollaus
 
 
 
@@ -58,15 +60,15 @@ const App = () => {
 
     )
   }
-
+  console.log(user)
   const Choice = () => {
     if (page === "main") return(<Main shopping_lists={shopping_lists} contacts={contacts} user={user} selectPage={selectPage} selectPageProperties={selectPageProperties} selectSender={selectSender}/>)
 
-    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender}/>)
+    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user}/>)
 
     if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender}/>)
   }
-  console.log("sender", sender)
+  //console.log("sender", sender)
 
   const shopping_lists = result.data.findUser.user_shopping_lists
   const contacts = result.data.findUser.userContacts

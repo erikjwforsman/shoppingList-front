@@ -8,6 +8,8 @@ import AddNewList from "./AddNewList"
 
 const Main = (props) => {
 
+  //console.log(props.user)
+
   return(
     <div>
     <Contacts user={props.user} contacts={props.contacts}/>
@@ -15,10 +17,10 @@ const Main = (props) => {
         Sinulla on {props.shopping_lists.length} ostolistaa
         <h3>Listasi:</h3>
         {props.shopping_lists.map(l =>
-          <ShoppingList key={l.id} shoppingList={l} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} selectSender={props.selectSender}/>
+          <ShoppingList key={l.id} shoppingList={l} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} selectSender={props.selectSender} username={props.user}/>
         )}
       </div>
-      <AddNewList />
+      <AddNewList username={props.user}/>
     </div>
   )
 }

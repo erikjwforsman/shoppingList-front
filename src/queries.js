@@ -32,6 +32,30 @@ export const FIND_USER = gql`
 
 `
 
+export const ADD_SHOPPINGLIST = gql`
+  mutation addShoppingList($username: String!, $listName:String!){
+    addNewList(username: $username, listName:$listName){
+      listName
+    }
+  }
+`
+
+export const ADD_ITEM = gql`
+  mutation addItem($listName: String!,$itemName: String!, $itemAmount:String, $itemNote:String){
+    addItemToList(listName: $listName, itemName: $itemName, itemAmount: $itemAmount, itemNote:$itemNote){
+      itemName
+    }
+  }
+`
+
+export const EDIT_ITEM = gql`
+  mutation editSelectedItem($itemName:String!, $itemAmount:String, $itemNote:String){
+    editItemOnList(itemName:$itemName, itemAmount:$itemAmount, itemNote:$itemNote){
+      itemName
+    }
+  }
+`
+
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!){
     login(username: $username, password: $password){

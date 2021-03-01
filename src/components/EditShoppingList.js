@@ -35,7 +35,7 @@ const EditShoppingList = (props) => {
       )}
     </div>
 
-      <AddNewItem />
+      <AddNewItem listName={props.pageProperties.listName} username={props.username}/>
 
     </div>
   )

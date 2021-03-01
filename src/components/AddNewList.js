@@ -1,21 +1,57 @@
 import React, {useState} from "react"
+import {gql, useMutation} from "@apollo/client"
+import {ADD_SHOPPINGLIST, FIND_USER} from "../queries"
 
-const AddNewList = () => {
+const AddNewList = (props) => {
   const [expanded, setExpansion] = useState(null)
+  const [listName, setListName] = useState("")
+  const [createList] =useMutation(ADD_SHOPPINGLIST,{
+    refetchQueries: [
+      {
+      query: FIND_USER,
+      variables: {nameToSearch: props.username}
+      }
+    ]
+  })
 
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
 
+  //createList({ variables:{ username: props.username, listName} } )
+
+
+  const submit = async(event) => {
+    event.preventDefault()
+    console.log(props.username)
+    console.log(listName)
+    createList({ variables:{ username: props.username, listName} } )
+    setListName("")
+
+  }
+
+  //console.log(props)
+
   if (!expanded){
     return  <div>
-              <button onClick={()=>toggleExpansion()}>Lisää lista</button>
+    <button onClick={() => {
+      toggleExpansion()
+      setListName("")
+    }}>Lisää lista</button>
             </div>
   }
+
   return(
     <div>
-      <button onClick={() => toggleExpansion()}>Peru lista</button><br/>
-      Tähän listään listan nimi <button>Tallenna lista</button>
+      <button onClick={() => toggleExpansion() }>Peru lista</button><br/>
+      <form onSubmit = {submit}>
+        <div>
+          Listan nimi: <input value={listName}
+            onChange ={ ({target}) => setListName(target.value) }
+          />
+        </div>
+        <button>Tallenna lista</button>
+      </form>
     </div>
 
   )

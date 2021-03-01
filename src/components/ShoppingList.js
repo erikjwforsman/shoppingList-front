@@ -6,7 +6,7 @@ const ShoppingList = (props) => {
   const [expanded, setExpansion] = useState(null)
   const [page, setPage] = useState("")
 
-  console.log(props)
+//  console.log(props)
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
