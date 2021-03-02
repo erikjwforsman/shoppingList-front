@@ -57,8 +57,8 @@ export const EDIT_ITEM = gql`
 `
 
 export const REMOVE_ITEM = gql`
-  mutation removeItem($listName:String!, $itemName:String!){
-    removeItemFromList(listName:$listName, itemName:$itemName){
+  mutation removeItem($listId:String!, $itemId:String!){
+    removeItemFromList(listId:$listId, itemId:$itemId){
       itemName
     }
   }

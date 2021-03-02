@@ -4,15 +4,17 @@ import {REMOVE_ITEM} from "../queries"
 
 const RemoveItem = (props) => {
   const [removeItem] = useMutation(REMOVE_ITEM)
+
   //props.sender => lista
   //props.pageProperties.itemName => itemName
   const item = props.pageProperties
   const lista = props.sender
   const kohde = "editShoppingList"
-
+  console.log(item)
+  console.log(lista)
   const finalizeRemoval = async(event) => {
     //event.preventDefault()
-    await removeItem({ variables:{listName:lista.listName, itemName:item.itemName} })
+    await removeItem({ variables:{listId:lista.id, itemId:item.id} })
   }
 
   return (
