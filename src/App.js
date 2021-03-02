@@ -10,6 +10,9 @@ import Main from "./components/Main"
 import EditShoppingList from "./components/EditShoppingList"
 import AddNewList from "./components/AddNewList"
 import EditItem from "./components/EditItem"
+import RemoveItem from "./components/RemoveItem"
+import RemoveList from "./components/RemoveList"
+
 
 const App = () => {
 
@@ -22,7 +25,6 @@ const App = () => {
 
   const result = useQuery(FIND_USER, {
     variables: {nameToSearch: user},
-    pollInterval: 2000
 
   }) //Lisää jossain vaiheessa pollaus
 
@@ -66,7 +68,11 @@ const App = () => {
 
     if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user}/>)
 
-    if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender}/>)
+    if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
+
+    if (page === "removeItem") return (<RemoveItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
+
+    if (page === "removeList") return (<RemoveList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
   }
   //console.log("sender", sender)
 

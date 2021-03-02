@@ -1,4 +1,6 @@
 import React, {useState} from "react"
+import RemoveItem from "./RemoveItem"
+
 
 const Item = (props) => {
   const [expanded, setExpansion] = useState(null)
@@ -15,20 +17,23 @@ const Item = (props) => {
   console.log(props)
 
   const editPage = "editItem"
+  const removeItemPage = "removeItem"
 
   const showItemDetails = () => {
     if (props.open===true){
       return  <div>
                 <div>{props.item.itemName} {props.item.itemAmount}
-                  <button>Poista</button>
+                  <button onClick={() => {
+                    {props.selectPageProperties(props.item)}
+                    {props.selectSender(props.curSender)}
+                    {props.selectPage(removeItemPage)}
+                  }}>Poista</button>
+
                   <button onClick={() =>{
                     {props.selectPageProperties(props.item)}
                     {props.selectSender(props.curSender)}
                     {props.selectPage(editPage)}
-
-
-                  }
-                  }>Muokkaa</button>
+                  }}>Muokkaa</button>
                 </div>
 
                 <div>{props.item.itemNote}</div>

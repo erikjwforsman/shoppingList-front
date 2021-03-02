@@ -56,6 +56,21 @@ export const EDIT_ITEM = gql`
   }
 `
 
+export const REMOVE_ITEM = gql`
+  mutation removeItem($listName:String!, $itemName:String!){
+    removeItemFromList(listName:$listName, itemName:$itemName){
+      itemName
+    }
+  }
+`
+export const REMOVE_LIST = gql`
+  mutation removeList($listName:String!){
+    deleteList(listName:$listName){
+      listName
+    }
+  }
+`
+
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!){
     login(username: $username, password: $password){

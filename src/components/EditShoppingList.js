@@ -5,6 +5,7 @@ import AddNewItem from "./AddNewItem"
 const EditShoppingList = (props) => {
   console.log(props)
   const koti = "main"
+  const removeList = "removeList"
   const shoppingList = props.pageProperties
   //console.log(shoppingList.listMembers)
   return (
@@ -16,6 +17,10 @@ const EditShoppingList = (props) => {
     Täällä voit editoida listaasi: "{shoppingList.listName}"<br/>
     <div>
     <button>Lisää käyttäjä</button>
+    <button onClick={()=>{
+      {props.selectPageProperties(shoppingList)}
+      {props.selectPage(removeList)}
+    }}>Poista lista</button>
       {
         shoppingList.listMembers.length >1 ?
         <div>Listan käyttäjät:
