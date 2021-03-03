@@ -63,6 +63,14 @@ export const REMOVE_ITEM = gql`
     }
   }
 `
+
+export const REMOVE_MANY = gql`
+  mutation removeMany($listId:String!, $itemIds:[String!]){
+    removeManyItems(listId: $listId, itemIds:$itemIds){
+      listName
+    }
+  }
+`
 export const REMOVE_LIST = gql`
   mutation removeList($listId:String!){
     deleteList(listId:$listId){

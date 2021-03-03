@@ -4,7 +4,7 @@ import RemoveItem from "./RemoveItem"
 
 const Item = (props) => {
   const [expanded, setExpansion] = useState(null)
-  const [onCart, pickUp] = useState(null)
+  const [onCart, pickUp] = useState(false)
 
   const toggleExpansion = () =>{
     setExpansion(!expanded)
@@ -12,8 +12,9 @@ const Item = (props) => {
 
   const togglePickUp = () => {
     pickUp(!onCart)
+    props.onCartCallback(props.item.id)
   }
-
+  console.log(onCart)
   console.log(props)
 
   const editPage = "editItem"
