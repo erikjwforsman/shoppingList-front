@@ -49,8 +49,8 @@ export const ADD_ITEM = gql`
 `
 
 export const EDIT_ITEM = gql`
-  mutation editSelectedItem($itemName:String!, $itemAmount:String, $itemNote:String){
-    editItemOnList(itemName:$itemName, itemAmount:$itemAmount, itemNote:$itemNote){
+  mutation editSelectedItem($itemId:String!,$itemName:String!, $itemAmount:String, $itemNote:String){
+    editItemOnList(itemId:$itemId, itemName:$itemName, itemAmount:$itemAmount, itemNote:$itemNote){
       itemName
     }
   }
@@ -64,8 +64,8 @@ export const REMOVE_ITEM = gql`
   }
 `
 export const REMOVE_LIST = gql`
-  mutation removeList($listName:String!){
-    deleteList(listName:$listName){
+  mutation removeList($listId:String!){
+    deleteList(listId:$listId){
       listName
     }
   }

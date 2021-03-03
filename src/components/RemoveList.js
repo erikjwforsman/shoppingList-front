@@ -6,11 +6,11 @@ const RemoveList = (props) => {
   const [removeList] = useMutation(REMOVE_LIST)
 
   const lista = props.pageProperties
-  console.log(lista.listName)
+  console.log(lista)
   const kohde="editShoppingList"
 
   const finalizeRemoval = async() => {
-    await removeList({ variables:{listName:lista.listName} })
+    await removeList({ variables:{listId:lista.id} })
     window.location.reload()
   }
 

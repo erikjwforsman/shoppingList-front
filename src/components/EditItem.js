@@ -11,12 +11,12 @@ const EditItem = (props) => {
     refetchQueries: [{
       query:FIND_USER,
       variables:{username:props.username}
+      //pitäisikö olla nameToSearch?
     }]
   })
 
 
   console.log(props)
-  console.log(itemName)
   const item = props.pageProperties
   const kohde = "editShoppingList"
   //{selectPageProperties(props.sender)}
@@ -28,7 +28,7 @@ const EditItem = (props) => {
     console.log(itemAmount)
     console.log(itemNote)
     //pääsee tähän asti
-    await changeItem({ variables: {itemName, itemNote, itemAmount}  })
+    await changeItem({ variables: {itemId:item.id ,itemName, itemNote, itemAmount}  })
     //props.selectPageProperties(props.sender)
     //props.selectPage(kohde)
   }
