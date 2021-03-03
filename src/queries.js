@@ -41,8 +41,8 @@ export const ADD_SHOPPINGLIST = gql`
 `
 
 export const ADD_ITEM = gql`
-  mutation addItem($listName: String!,$itemName: String!, $itemAmount:String, $itemNote:String){
-    addItemToList(listName: $listName, itemName: $itemName, itemAmount: $itemAmount, itemNote:$itemNote){
+  mutation addItem($listId: String!,$itemName: String!, $itemAmount:String, $itemNote:String){
+    addItemToList(listId: $listId, itemName: $itemName, itemAmount: $itemAmount, itemNote:$itemNote){
       itemName
     }
   }

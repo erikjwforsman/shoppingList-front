@@ -40,7 +40,7 @@ const EditShoppingList = (props) => {
       )}
     </div>
 
-      <AddNewItem listName={props.pageProperties.listName} username={props.username}/>
+      <AddNewItem listId={props.pageProperties.id} username={props.username}/>
 
     </div>
   )

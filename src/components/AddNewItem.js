@@ -16,6 +16,8 @@ const AddNewItem = (props) => {
     ]
   })
 
+  console.log(props)
+
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
@@ -24,11 +26,11 @@ const AddNewItem = (props) => {
 
   const submit = async(event) => {
     event.preventDefault()
-    console.log(props.listName)
+    console.log(props.listId)
     console.log(itemName)
     console.log(itemAmount)
     console.log(itemNote)
-    createItem({ variables: { listName: props.listName, itemName, itemAmount, itemNote }})
+    createItem({ variables: { listId: props.listId, itemName, itemAmount, itemNote }})
     setItemName("")
     setItemAmount("")
     setItemNote("")
