@@ -17,9 +17,9 @@ import EditListUsers from "./components/EditListUsers"
 
 
 const App = () => {
-
   const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
+  //const [id, setId] = useState(null)
   const [page, setPage] = useState("main")
   const [pageProperties, setPageProperties] = useState(null)
   const [sender, setSender] = useState(null)
@@ -27,10 +27,7 @@ const App = () => {
 
   const result = useQuery(FIND_USER, {
     variables: {nameToSearch: user},
-
   }) //Lisää jossain vaiheessa pollaus
-
-
 
   useEffect(() => {
     const token = localStorage.getItem("shopping_list-user-token")
@@ -42,6 +39,7 @@ const App = () => {
     if (user) {
       setUser(user)
     }
+
   }, [])
 
   if(result.loading){
@@ -64,9 +62,9 @@ const App = () => {
 
     )
   }
-  console.log(user)
+
   const Choice = () => {
-    if (page === "main") return(<Main shopping_lists={shopping_lists} contacts={contacts} user={user} selectPage={selectPage} selectPageProperties={selectPageProperties} selectSender={selectSender}/>)
+    if (page === "main") return(<Main shopping_lists={shopping_lists} contacts={contacts} id={result.data.findUser.id} user={user} selectPage={selectPage} selectPageProperties={selectPageProperties} selectSender={selectSender}/>)
 
     if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user}/>)
 
@@ -78,13 +76,15 @@ const App = () => {
 
     if (page === "editListUsers") return (<EditListUsers selectPage={selectPage} pageProperties={pageProperties} userContacts={contacts} user={uberUser}/>)
   }
-  //console.log("sender", sender)
 
   const shopping_lists = result.data.findUser.user_shopping_lists
   const contacts = result.data.findUser.userContacts
-  console.log(result.data.findUser)
+  //console.log(result.data.findUser)
+
   const uberUser = {username:result.data.findUser.username, id:result.data.findUser.id}
-  console.log(uberUser)
+
+  //console.log(id)
+
   const selectPage = (paikka) => {
     setPage(paikka)
   }
@@ -97,8 +97,6 @@ const App = () => {
     setSender(testi)
   }
 
-  //console.log("Sivu:",page)
-  //console.log("properties:", pageProperties)
   return (
     <div>
       <div>

@@ -1,12 +1,18 @@
 import React, {useState} from "react"
 import Item from "./Item"
-import {gql, useMutation} from "@apollo/client"
-import {REMOVE_MANY, REMOVE_ITEM, FIND_USER} from "../queries"
+import {gql, useMutation, useQuery } from "@apollo/client"
+import {FIND_LIST,REMOVE_MANY, REMOVE_ITEM, FIND_USER, } from "../queries"
 
 
 const ShoppingList = (props) => {
+
+  const resultList = useQuery(FIND_LIST,{
+    variables:{ listId: props.listId}
+  })
+
   const [expanded, setExpansion] = useState(null)
   const [page, setPage] = useState("")
+
   const [removeMany] = useMutation(REMOVE_MANY)
   const [removeItem] = useMutation(REMOVE_ITEM, {
     refetchQueries:[
@@ -17,9 +23,10 @@ const ShoppingList = (props) => {
     ]
   })
 
-  console.log(props.username)
-
   let itemsToBeRemoved = []
+
+console.log(typeof(props.listId))
+  console.log(resultList.data)
 
   const toggleExpansion = () => {
     setExpansion(!expanded)
@@ -59,7 +66,8 @@ const ShoppingList = (props) => {
         <button onClick={() =>{
           {props.selectPageProperties(props.shoppingList)}
           {props.selectPage(siirtymä)}
-        }}>Editoi listaa</button>
+        }}>Editoi listaa</button><br/>
+        Tämä on resultListista lista {resultList.data.findList.id}
         <div>
         <div>
           {

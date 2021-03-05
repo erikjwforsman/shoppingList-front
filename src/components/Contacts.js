@@ -7,10 +7,10 @@ const Contacts = (props) => {
     setExpansion(!expanded)
   }
 
-  console.log("PROPSIT", props.user)
+  //console.log("PROPSIT", props.user)
 
   const showContacts = () => {
-    console.log(props.user)
+    //console.log(props.user)
     if (expanded) {
       return(<div>
         <div><button onClick={toggleExpansion}>Pienennä</button></div>

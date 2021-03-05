@@ -9,38 +9,24 @@ import AddNewList from "./AddNewList"
 const Main = (props) => {
 
   //console.log(props.user)
-
+  //console.log(props.id)
+  //console.log(props)
   return(
     <div>
     <Contacts user={props.user} contacts={props.contacts}/>
       <div>
-        Sinulla on {props.shopping_lists.length} ostolistaa
+        Sinulla on {props.shopping_lists.length} ostolistaa <br/>
+        Id:si {props.id} <br/>
         <h3>Listasi:</h3>
         {props.shopping_lists.map(l =>
-          <ShoppingList key={l.id} shoppingList={l} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} selectSender={props.selectSender} username={props.user}/>
+          <ShoppingList key={l.id} shoppingList={l} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} selectSender={props.selectSender} username={props.user} listId={l.id}/>
         )}
       </div>
+      <br/>
       <AddNewList username={props.user}/>
     </div>
   )
 }
 
-{/*
-  return (
-    <div>
-      <div>
-      <Contacts user={user} contacts={contacts}/>
-      <button onClick={logOut} >logout</button>
-      </div>
-      <div>
-        Sinulla on {result.data.findUser.user_shopping_lists.length} ostolistaa
-        <h3>Listasi:</h3>
-        {shopping_lists.map(l =>
-          <ShoppingList key={l.id} shoppingList={l}/>
-        )}
-      </div>
-    </div>
-  )
-  */}
 
 export default Main
