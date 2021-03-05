@@ -1,9 +1,16 @@
 import React from "react"
 import {gql, useMutation} from "@apollo/client"
-import {REMOVE_ITEM} from "../queries"
+import {REMOVE_ITEM, FIND_USER} from "../queries"
 
 const RemoveItem = (props) => {
-  const [removeItem] = useMutation(REMOVE_ITEM)
+  const [removeItem] = useMutation(REMOVE_ITEM,{
+    refetchQueries: [
+      {
+      query: FIND_USER,
+      variables: {nameToSearch: props.username}
+      }
+    ]
+  })
 
   //props.sender => lista
   //props.pageProperties.itemName => itemName

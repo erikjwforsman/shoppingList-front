@@ -1,14 +1,23 @@
 import React, {useState} from "react"
 import Item from "./Item"
 import {gql, useMutation} from "@apollo/client"
-import {REMOVE_MANY, REMOVE_ITEM} from "../queries"
+import {REMOVE_MANY, REMOVE_ITEM, FIND_USER} from "../queries"
 
 
 const ShoppingList = (props) => {
   const [expanded, setExpansion] = useState(null)
   const [page, setPage] = useState("")
   const [removeMany] = useMutation(REMOVE_MANY)
-  const [removeItem] = useMutation(REMOVE_ITEM)
+  const [removeItem] = useMutation(REMOVE_ITEM, {
+    refetchQueries:[
+      {
+        query: FIND_USER,
+        variables: {nameToSearch:props.username}
+      }
+    ]
+  })
+
+  console.log(props.username)
 
   let itemsToBeRemoved = []
 
@@ -32,7 +41,7 @@ const ShoppingList = (props) => {
       }
     //js muuttaa arrayn olioksi ja se ei sovi gql:n tyyppiin?
     //await removeMany({variables: {listId:props.shoppingList.id, itemIds:itemsToBeRemoved}})
-    itemsToBeRemoved=[]
+      itemsToBeRemoved=[]
     }
   }
 
@@ -45,8 +54,8 @@ const ShoppingList = (props) => {
     if (expanded){
       return (
         <div>
-        {props.shoppingList.listName}
-        <button onClick={toggleExpansion}>Sulje</button>
+
+        <button onClick={toggleExpansion}>{props.shoppingList.listName} sulje</button>
         <button onClick={() =>{
           {props.selectPageProperties(props.shoppingList)}
           {props.selectPage(siirtymä)}
@@ -73,7 +82,7 @@ const ShoppingList = (props) => {
     }
     return (
       <div>
-        {props.shoppingList.listName} <button onClick={toggleExpansion}>Laajenna</button>
+         <button onClick={toggleExpansion}>{props.shoppingList.listName} avaa</button>
       </div>
     )
   }

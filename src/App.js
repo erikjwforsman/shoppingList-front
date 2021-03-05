@@ -12,6 +12,8 @@ import AddNewList from "./components/AddNewList"
 import EditItem from "./components/EditItem"
 import RemoveItem from "./components/RemoveItem"
 import RemoveList from "./components/RemoveList"
+import EditListUsers from "./components/EditListUsers"
+
 
 
 const App = () => {
@@ -73,12 +75,16 @@ const App = () => {
     if (page === "removeItem") return (<RemoveItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
 
     if (page === "removeList") return (<RemoveList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
+
+    if (page === "editListUsers") return (<EditListUsers selectPage={selectPage} pageProperties={pageProperties} userContacts={contacts} user={uberUser}/>)
   }
   //console.log("sender", sender)
 
   const shopping_lists = result.data.findUser.user_shopping_lists
   const contacts = result.data.findUser.userContacts
-
+  console.log(result.data.findUser)
+  const uberUser = {username:result.data.findUser.username, id:result.data.findUser.id}
+  console.log(uberUser)
   const selectPage = (paikka) => {
     setPage(paikka)
   }

@@ -1,6 +1,6 @@
 import React, {useState} from "react"
-import {gql, useMutation} from "@apollo/client"
-import {ADD_SHOPPINGLIST, FIND_USER} from "../queries"
+import {gql, useMutation, useQuery} from "@apollo/client"
+import {ADD_SHOPPINGLIST, FIND_USER, FIND_LIST} from "../queries"
 
 const AddNewList = (props) => {
   const [expanded, setExpansion] = useState(null)
@@ -8,8 +8,12 @@ const AddNewList = (props) => {
   const [createList] =useMutation(ADD_SHOPPINGLIST,{
     refetchQueries: [
       {
-      query: FIND_USER,
-      variables: {nameToSearch: props.username}
+        query: FIND_USER,
+        variables: {nameToSearch: props.username}
+      },
+      {
+        query: FIND_LIST,
+        variables: {listId: props.listId}
       }
     ]
   })

@@ -8,11 +8,12 @@ const EditItem = (props) => {
   const [itemNote, setItemNote] = useState(props.pageProperties.itemNote === null ? "" : props.pageProperties.itemNote)
 
   const [changeItem] = useMutation(EDIT_ITEM, {
-    refetchQueries: [{
-      query:FIND_USER,
-      variables:{username:props.username}
-      //pitäisikö olla nameToSearch?
-    }]
+    refetchQueries: [
+      {
+      query: FIND_USER,
+      variables: {nameToSearch: props.username}
+      }
+    ]
   })
 
 

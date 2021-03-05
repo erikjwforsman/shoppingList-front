@@ -32,6 +32,25 @@ export const FIND_USER = gql`
 
 `
 
+export const FIND_LIST = gql`
+  query findSpecificList ($listId: String!){
+    findList(listId:$listId){
+      listName
+      id
+      items{
+        itemName
+        id
+        itemAmount
+        itemNote
+      }
+      listMembers{
+        username
+        id
+      }
+    }
+  }
+`
+
 export const ADD_SHOPPINGLIST = gql`
   mutation addShoppingList($username: String!, $listName:String!){
     addNewList(username: $username, listName:$listName){
