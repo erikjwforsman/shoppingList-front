@@ -14,8 +14,8 @@ const EditShoppingList = (props) => {
   //console.log(listResult.data.findList.items.length)
 
   //console.log(typeof(props.pageProperties.id))
-
-  //console.log(props.pageProperties.id)
+  console.log(props)
+  console.log(listResult.data.findList)
 
   if(listResult.loading){
     return <p>loading...</p>
@@ -24,7 +24,9 @@ const EditShoppingList = (props) => {
   const koti = "main"
   const removeList = "removeList"
   const editListUsers = "editListUsers"
-  const shoppingList = props.pageProperties
+  const shoppingList = listResult.data.findList
+  //const shoppingList = props.pageProperties
+
   //console.log(shoppingList.listMembers)
 
   return (

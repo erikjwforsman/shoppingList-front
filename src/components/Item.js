@@ -16,6 +16,7 @@ const Item = (props) => {
   }
   //console.log(onCart)
   //console.log(props)
+  console.log(props.item.id)
 
   const editPage = "editItem"
   const removeItemPage = "removeItem"

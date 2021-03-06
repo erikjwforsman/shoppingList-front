@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {gql, useMutation} from "@apollo/client"
-import {EDIT_ITEM, FIND_USER} from "../queries"
+import {EDIT_ITEM, FIND_LIST} from "../queries"
 
 const EditItem = (props) => {
   const [itemName, setItemName] = useState(props.pageProperties.itemName)
@@ -10,14 +10,14 @@ const EditItem = (props) => {
   const [changeItem] = useMutation(EDIT_ITEM, {
     refetchQueries: [
       {
-      query: FIND_USER,
-      variables: {nameToSearch: props.username}
+      query: FIND_LIST,
+      variables: {listId: props.pageProperties.id}
       }
     ]
   })
 
 
-  console.log(props)
+  console.log("Editoinnitsa",props.pageProperties.id)
   const item = props.pageProperties
   const kohde = "editShoppingList"
   //{selectPageProperties(props.sender)}

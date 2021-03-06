@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {gql, useMutation} from "@apollo/client"
-import {ADD_ITEM, FIND_USER} from "../queries"
+import {ADD_ITEM, FIND_USER, FIND_LIST} from "../queries"
 
 const AddNewItem = (props) => {
   const [expanded, setExpansion] = useState(null)
@@ -12,17 +12,23 @@ const AddNewItem = (props) => {
       {
         query: FIND_USER,
         variables: {nameToSearch: props.username}
+      },
+      {
+        query: FIND_LIST,
+        variables: {listId: props.listId}
       }
+
+
     ]
   })
 
-  console.log(props)
+  //console.log(props)
 
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
 
-  //console.log(props)
+  console.log(props)
 
   const submit = async(event) => {
     event.preventDefault()

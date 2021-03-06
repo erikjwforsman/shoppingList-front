@@ -11,13 +11,14 @@ const AddNewList = (props) => {
         query: FIND_USER,
         variables: {nameToSearch: props.username}
       },
-      {
-        query: FIND_LIST,
-        variables: {listId: props.listId}
-      }
+  //    {
+    //    query: FIND_LIST,
+      //  variables: {listId: props.listId}
+      //}
     ]
   })
 
+  console.log(props)
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }

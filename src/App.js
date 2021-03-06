@@ -29,6 +29,8 @@ const App = () => {
     variables: {nameToSearch: user},
   }) //Lisää jossain vaiheessa pollaus
 
+  console.log(user)
+
   useEffect(() => {
     const token = localStorage.getItem("shopping_list-user-token")
     const user = localStorage.getItem("user")
@@ -76,6 +78,13 @@ const App = () => {
 
     if (page === "editListUsers") return (<EditListUsers selectPage={selectPage} pageProperties={pageProperties} userContacts={contacts} user={uberUser}/>)
   }
+
+  console.log(result.data.findUser)
+
+  //Hätäuloskirjautuminen esim. null-ongelmaan
+  //if (user==="Erik"){
+    //logOut()
+  //}
 
   const shopping_lists = result.data.findUser.user_shopping_lists
   const contacts = result.data.findUser.userContacts
