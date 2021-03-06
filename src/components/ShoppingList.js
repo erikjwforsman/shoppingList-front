@@ -44,7 +44,7 @@ For more information about these options, please refer to the documentation:
     return <div>loading...</div>
   }
 
-  const itemsToBeRemoved = []
+  let itemsToBeRemoved = []
 
 //console.log(typeof(props.listId))
   console.log(props);
@@ -56,7 +56,9 @@ For more information about these options, please refer to the documentation:
   const onCartCallback = (itemId) => {
     if (!itemsToBeRemoved.includes(itemId)){
       itemsToBeRemoved.push(itemId)
+      console.log(typeof(itemsToBeRemoved[0]))
     } else {
+      console.log(typeof(itemId))
       itemsToBeRemoved = itemsToBeRemoved.filter(item => item !== itemId)
     }
   }

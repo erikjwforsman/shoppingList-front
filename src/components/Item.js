@@ -14,9 +14,8 @@ const Item = (props) => {
     pickUp(!onCart)
     props.onCartCallback(props.item.id)
   }
-  //console.log(onCart)
+
   //console.log(props)
-  console.log(props.item.id)
 
   const editPage = "editItem"
   const removeItemPage = "removeItem"
