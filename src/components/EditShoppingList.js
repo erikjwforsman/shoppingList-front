@@ -2,8 +2,8 @@ import React from "react"
 import Item from "./Item"
 import AddNewItem from "./AddNewItem"
 import EditListUsers from "./EditListUsers"
-import {gql, useQuery} from "@apollo/client"
-import {FIND_LIST} from "../queries"
+import {gql, useQuery, useMutation} from "@apollo/client"
+import {FIND_LIST, REMOVE_ITEM} from "../queries"
 
 
 const EditShoppingList = (props) => {
@@ -11,6 +11,14 @@ const EditShoppingList = (props) => {
   const listResult = useQuery(FIND_LIST,{
     variables:{ listId: props.pageProperties.id}
   })
+
+  //const removeItem = useMutation(REMOVE_ITEM,{
+    //  variables: {itemId: jotain},
+  //  refetchQueries: {
+    //  query: FIND_LIST,
+      //variables
+    //}
+  //})
   //console.log(listResult.data.findList.items.length)
 
   //console.log(typeof(props.pageProperties.id))
@@ -19,6 +27,10 @@ const EditShoppingList = (props) => {
 
   if(listResult.loading){
     return <p>loading...</p>
+  }
+
+  const callBackRemove = () => {
+    console.log("callback poisto")
   }
 
   const koti = "main"
@@ -61,7 +73,7 @@ const EditShoppingList = (props) => {
       Listan tuotteet:
       {shoppingList.items.map( item =>
         <div key={item.id}>
-          <Item item={item} open={true} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender}/>
+          <Item item={item} open={true} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} callBackRemove={callBackRemove}/>
         </div>
       )}
     </div>
