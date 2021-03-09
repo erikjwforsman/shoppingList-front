@@ -8,9 +8,9 @@ const AddNewItem = (props) => {
   const [itemAmount, setItemAmount] = useState("")
   const [itemNote, setItemNote] = useState("")
   const [createItem] = useMutation(ADD_ITEM, {
-    refetchQueries: [
-      {
-        query: FIND_USER,
+   refetchQueries: [
+     {
+       query: FIND_USER,
         variables: {nameToSearch: props.username}
       },
       {
@@ -18,7 +18,7 @@ const AddNewItem = (props) => {
         variables: {listId: props.listId}
       }
 
-
+  
     ]
   })
 

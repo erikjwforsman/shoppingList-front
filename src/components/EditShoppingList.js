@@ -73,7 +73,7 @@ const EditShoppingList = (props) => {
       Listan tuotteet:
       {shoppingList.items.map( item =>
         <div key={item.id}>
-          <Item item={item} open={true} selectPage={props.selectPage} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} callBackRemove={callBackRemove}/>
+          <Item item={item} open={true} selectPage={props.selectPage} listId={props.pageProperties.id} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} callBackRemove={callBackRemove}/>
         </div>
       )}
     </div>
