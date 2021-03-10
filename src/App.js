@@ -23,13 +23,14 @@ const App = () => {
   const [page, setPage] = useState("main")
   const [pageProperties, setPageProperties] = useState(null)
   const [sender, setSender] = useState(null)
+  const [kontti, setKontti] = useState(null)
   const client = useApolloClient()
 
   const result = useQuery(FIND_USER, {
     variables: {nameToSearch: user},
   }) //Lisää jossain vaiheessa pollaus
 
-  console.log(user)
+  //console.log(user)
 
   useEffect(() => {
     const token = localStorage.getItem("shopping_list-user-token")
@@ -48,12 +49,18 @@ const App = () => {
     return <p>loading...</p>
   }
 
+  //console.log(result.data)
+
   const logOut = () => {
     setToken(null)
     setUser(null)
     localStorage.clear()
     client.resetStore()
   }
+
+//  if(user === "Lena"){
+  //  logOut()
+  //}
 
   if (!token) {
     return(
@@ -68,18 +75,18 @@ const App = () => {
   const Choice = () => {
     if (page === "main") return(<Main shopping_lists={shopping_lists} contacts={contacts} id={result.data.findUser.id} user={user} selectPage={selectPage} selectPageProperties={selectPageProperties} selectSender={selectSender}/>)
 
-    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user}/>)
+    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user} kontti={kontti} selectKontti={selectKontti}/>)
 
-    if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
+    if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user} selectKontti={selectKontti}/>)
 
-    if (page === "removeItem") return (<RemoveItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
+    if (page === "removeItem") return (<RemoveItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender}  username={user}/>)
 
     if (page === "removeList") return (<RemoveList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
 
     if (page === "editListUsers") return (<EditListUsers selectPage={selectPage} pageProperties={pageProperties} userContacts={contacts} user={uberUser}/>)
   }
 
-  console.log(result.data.findUser)
+  //console.log(result.data.findUser)
 
   //Hätäuloskirjautuminen esim. null-ongelmaan
   //if (user==="Erik"){
@@ -105,6 +112,11 @@ const App = () => {
   const selectSender = (testi) => {
     setSender(testi)
   }
+
+  const selectKontti = (asiaa) => {
+    setKontti(asiaa)
+  }
+
 
   return (
     <div>

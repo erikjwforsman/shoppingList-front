@@ -23,6 +23,8 @@ const ShoppingList = (props) => {
     ]
   })
 
+//  return(<div>Work in progress..</div>)
+
 {/* Mysteerivirheen ohjeet poistettaessa useita:
 
   Cache data may be lost when replacing the items field of a Shopping_list object.
@@ -107,7 +109,7 @@ For more information about these options, please refer to the documentation:
         </div>
         {resultList.data.findList.items.map( item =>
           <div key={item.id}>
-            <Item item={item} onCartCallback={onCartCallback}/>
+            <Item item={item} onCartCallback={onCartCallback} />
           </div>
         )}
         </div>

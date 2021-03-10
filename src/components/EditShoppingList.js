@@ -23,7 +23,7 @@ const EditShoppingList = (props) => {
 
   //console.log(typeof(props.pageProperties.id))
   console.log(props)
-  console.log(listResult.data.findList)
+  //console.log(listResult.data.findList)
 
   if(listResult.loading){
     return <p>loading...</p>
@@ -73,7 +73,7 @@ const EditShoppingList = (props) => {
       Listan tuotteet:
       {shoppingList.items.map( item =>
         <div key={item.id}>
-          <Item item={item} open={true} selectPage={props.selectPage} listId={props.pageProperties.id} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} callBackRemove={callBackRemove}/>
+          <Item item={item} open={true} selectPage={props.selectPage} listId={props.pageProperties.id} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} kontti={props.kontti} selectKontti={props.selectKontti}/>
         </div>
       )}
     </div>

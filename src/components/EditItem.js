@@ -17,7 +17,7 @@ const EditItem = (props) => {
   })
 
 
-  console.log("Editoinnitsa",props.pageProperties.id)
+  console.log("Editoinnitsa",props)
   const item = props.pageProperties
   const kohde = "editShoppingList"
   //{selectPageProperties(props.sender)}
@@ -25,13 +25,15 @@ const EditItem = (props) => {
 
   const submit = async(event) => {
     event.preventDefault()
-    console.log(itemName)
-    console.log(itemAmount)
-    console.log(itemNote)
+    console.log("magiaa")
+    // console.log(itemName)
+    // console.log(itemAmount)
+    // console.log(itemNote)
     //pääsee tähän asti
-    await changeItem({ variables: {itemId:item.id ,itemName, itemNote, itemAmount}  })
-    //props.selectPageProperties(props.sender)
-    //props.selectPage(kohde)
+  //  await changeItem({ variables: {itemId:item.id ,itemName, itemNote, itemAmount}  })
+    props.selectKontti({itemId:item.id ,itemName, itemNote, itemAmount})
+    props.selectPageProperties(props.sender)
+    props.selectPage(kohde)
   }
 
   return (
