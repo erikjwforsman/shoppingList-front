@@ -83,7 +83,7 @@ const App = () => {
 
     if (page === "removeList") return (<RemoveList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user}/>)
 
-    if (page === "editListUsers") return (<EditListUsers selectPage={selectPage} pageProperties={pageProperties} userContacts={contacts} user={uberUser}/>)
+    if (page === "editListUsers") return (<EditListUsers selectPage={selectPage} pageProperties={pageProperties} selectPageProperties={selectPageProperties} userContacts={contacts} user={uberUser} />)
   }
 
   //console.log(result.data.findUser)

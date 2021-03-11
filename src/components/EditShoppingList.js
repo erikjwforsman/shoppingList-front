@@ -40,7 +40,7 @@ const EditShoppingList = (props) => {
   //const shoppingList = props.pageProperties
 
   //console.log(shoppingList.listMembers)
-
+  console.log(shoppingList)
   return (
     <div>
     <button onClick={()=>{
