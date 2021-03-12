@@ -5,18 +5,18 @@ import {REMOVE_LIST} from "../queries"
 const RemoveList = (props) => {
   const [removeList] = useMutation(REMOVE_LIST)
 
-  const lista = props.pageProperties
-  console.log(lista)
-  const kohde="editShoppingList"
+  const listToBeRemoved = props.pageProperties
 
   const finalizeRemoval = async() => {
-    await removeList({ variables:{listId:lista.id} })
+    await removeList({ variables:{listId:listToBeRemoved.id} })
     window.location.reload()
   }
 
+  const returnTo="editShoppingList"
+
   return(
     <div>
-      Haluatko varmasti poistaa listan {lista.listName}?<br/>
+      Haluatko varmasti poistaa listan {listToBeRemoved.listName}?<br/>
       <button onClick={() => {
         {finalizeRemoval()}
       }}
@@ -24,7 +24,7 @@ const RemoveList = (props) => {
 
       <button onClick={()=>{
         {props.selectPageProperties(props.pageProperties)}
-        {props.selectPage(kohde)}
+        {props.selectPage(returnTo)}
       }}
       >Peru poisto</button>
     </div>

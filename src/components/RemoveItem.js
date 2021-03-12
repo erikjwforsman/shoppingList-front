@@ -12,6 +12,14 @@ const RemoveItem = (props) => {
     ]
   })
 
+  //TIEDOSTO EI KÄYTÖSSÄ. POISTA JOSSAIN VAIHEESSA
+
+  console.log("##############REMOVE##############")
+  console.log("##############REMOVE##############")
+  console.log("##############REMOVE##############")
+  console.log("##############REMOVE##############")
+  console.log("##############REMOVE##############")
+
   //props.sender => lista
   //props.pageProperties.itemName => itemName
   const item = props.pageProperties

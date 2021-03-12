@@ -75,7 +75,7 @@ const App = () => {
   const Choice = () => {
     if (page === "main") return(<Main shopping_lists={shopping_lists} contacts={contacts} id={result.data.findUser.id} user={user} selectPage={selectPage} selectPageProperties={selectPageProperties} selectSender={selectSender}/>)
 
-    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user} kontti={kontti} selectKontti={selectKontti}/>)
+    if (page === "editShoppingList") return (<EditShoppingList selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} username={user} hookItem={kontti} selectKontti={selectKontti}/>)
 
     if (page === "editItem") return (<EditItem selectPage={selectPage} selectPageProperties={selectPageProperties} pageProperties={pageProperties} selectSender={selectSender} sender={sender} username={user} selectKontti={selectKontti}/>)
 

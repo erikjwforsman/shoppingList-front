@@ -8,27 +8,15 @@ const AddNewItem = (props) => {
   const [itemAmount, setItemAmount] = useState("")
   const [itemNote, setItemNote] = useState("")
   const [createItem] = useMutation(ADD_ITEM, {
-   refetchQueries: [
-     {
-       query: FIND_USER,
-        variables: {nameToSearch: props.username}
-      },
-      {
-        query: FIND_LIST,
-        variables: {listId: props.listId}
-      }
-
-  
-    ]
+   refetchQueries: [{
+      query: FIND_LIST,
+      variables: {listId: props.listId}
+    }]
   })
-
-  //console.log(props)
 
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
-
-  console.log(props)
 
   const submit = async(event) => {
     event.preventDefault()
@@ -45,7 +33,7 @@ const AddNewItem = (props) => {
   if(!expanded){
     return (
       <div>
-        <button onClick={() => toggleExpansion()}>Lisää tuote</button>
+        <button onClick={() => toggleExpansion()}>Lisää tuotteita</button>
       </div>
     )
   }
@@ -75,8 +63,6 @@ const AddNewItem = (props) => {
         </div>
         <button>Lisää tuote listalle</button>
       </form>
-
-
     </div>
   )
 }

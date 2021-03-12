@@ -1,7 +1,8 @@
 import React, {useState} from "react"
-import RemoveItem from "./RemoveItem"
+//import RemoveItem from "./RemoveItem" Saa poistaa eriytetyn poistonäkymän
 import {gql, useMutation} from "@apollo/client"
 import {REMOVE_ITEM, FIND_USER, FIND_LIST, EDIT_ITEM} from "../queries"
+//Väli poisto
 //  //  //  //  //
 // Korjaa poiston ongelma:
 // Cache data may be lost when replacing the items field of a Shopping_list object.
@@ -15,37 +16,23 @@ import {REMOVE_ITEM, FIND_USER, FIND_LIST, EDIT_ITEM} from "../queries"
 //
 //   * Ensuring entity objects have IDs: https://go.apollo.dev/c/generating-unique-identifiers
 //   * Defining custom merge functions: https://go.apollo.dev/c/merging-non-normalized-objects
-
 //  //  //  //  //
-
-
 
 const Item = (props) => {
   const [editItem] = useMutation(EDIT_ITEM, {
-    refetchQueries:[
-      {
-        query: FIND_USER,
-        variables: {nameToSearch: props.username}
-      },
-      {
-        query: FIND_LIST,
-        variables: {listId: props.listId}
-      }
-    ]
+    refetchQueries:[{
+      query: FIND_LIST,
+      variables: {listId: props.listId}
+    }]
   })
 
   const [removeItem] = useMutation(REMOVE_ITEM,{
-    refetchQueries: [
-      {
-        query: FIND_USER,
-        variables: {nameToSearch: props.username}
-      },
-      {
-        query: FIND_LIST,
-        variables: {listId: props.listId}
-      }
-    ]
+    refetchQueries: [{
+      query: FIND_LIST,
+      variables: {listId: props.listId}
+    }]
   })
+
   const [expanded, setExpansion] = useState(null)
   const [onCart, pickUp] = useState(false)
 
@@ -58,64 +45,20 @@ const Item = (props) => {
     props.onCartCallback(props.item.id)
   }
 
-  //console.log(props)
-  let vali = props
-  console.log("vali:",vali)
-
-  let listanId= props.listId
-  console.log(listanId)
-  const checker = async() => {
-    console.log("AUKI")
-    if (props.kontti !== null && props.kontti !== undefined){
-      // console.log("En ole null")
-      // console.log(props.kontti)
-      const olio = props.kontti
-      // console.log(olio)
-      // const itemId = props.kontti.itemId
-      // const itemName= props.kontti.itemName
-      // const itemAmount= props.kontti.itemAmount
-      // const itemNote = props.kontti.itemNote
-      //
-      await editItem({ variables:{...props.kontti} })
+  const callBackEdit = async() => {
+    if (props.hookItem !== null && props.hookItem !== undefined){
+      const olio = props.hookItem
+      await editItem({ variables:{...props.hookItem} })
     }
   }
-
-  checker()
-
-
-//   if(vali){
-//     console.log("Jeee")
-//   }
-//   console.log(vali === null)
-// //  const changer = async(props) => {
-//   //  await
-//   //}
-//   //
-//   const changeChecker = async(vali) => {
-//     if (vali !== null){
-//       console.log("Superduberjee")
-//     }
-//     console.log("KLIKKLI")
-//   }
-//
-//   changeChecker()
-
-    //editItem(props.kontti)
-
-
-  const editPage = "editItem"
-  const removeItemPage = "removeItem"
+  callBackEdit()
 
   const finalizeRemoval = async(event) => {
     await removeItem({ variables: {listId:props.curSender.id, itemId:props.item.id}})
-
   }
-
-  const laukaisu = () => {
-    console.log("Nyt mennään!!!")
-  }
-
-  //laukaisu()
+  console.log(props)
+  const editPage = "editItem"
+  const removeItemPage = "removeItem"
 
   const showItemDetails = () => {
     if (props.open===true){
@@ -166,13 +109,7 @@ const Item = (props) => {
         </div>
       )
     }
-
-
-
-
   }
-
-  //console.log(props)
 
   return(
     <div>{showItemDetails()}</div>
