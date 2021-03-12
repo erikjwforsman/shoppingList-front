@@ -17,38 +17,10 @@ const authLink = setContext((_, {headers}) => {
 
 const httpLink = new HttpLink({ uri: 'http://localhost:4000' })
 
-
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink)
 })
-
-const query = gql`
-  query{
-    findUser(username:"Erik"){
-      username
-      id
-      userContacts{
-        id
-        username
-      }
-      user_shopping_lists{
-        listName
-        items{
-          itemName
-          itemNote
-          itemAmount
-          id
-        }
-      }
-    }
-  }
-`
-
-//client.query({ query })
-  //.then((response) => {
-    //console.log(response.data)
-  //})
 
 ReactDOM.render(
   <ApolloProvider client={client}>
@@ -56,7 +28,3 @@ ReactDOM.render(
     </ApolloProvider>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

@@ -56,7 +56,7 @@ const Item = (props) => {
   const finalizeRemoval = async(event) => {
     await removeItem({ variables: {listId:props.curSender.id, itemId:props.item.id}})
   }
-  console.log(props)
+
   const editPage = "editItem"
   const removeItemPage = "removeItem"
 

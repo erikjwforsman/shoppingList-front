@@ -13,24 +13,20 @@ const LoginForm = ({ setToken, setUser }) => {
     if(result.data) {
       const token = result.data.login.value
       const user = username
-      console.log(user)
       setToken(token)
       setUser(user)
       localStorage.setItem("shopping_list-user-token", token)
       localStorage.setItem("user", user)
-      console.log(localStorage)
     }
   }, [result.data])
 
   const submit = async (event) =>{
     event.preventDefault()
-
-    login({variables: {username, password} })
+    await login({variables: {username, password} })
   }
 
   return (
     <div>
-
       <form onSubmit={submit}>
         <div>
           username <input
@@ -47,7 +43,6 @@ const LoginForm = ({ setToken, setUser }) => {
         </div>
         <button type="submit">login</button>
       </form>
-
     </div>
   )
 }

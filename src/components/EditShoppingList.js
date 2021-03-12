@@ -12,19 +12,6 @@ const EditShoppingList = (props) => {
     variables:{ listId: props.pageProperties.id}
   })
 
-  //const removeItem = useMutation(REMOVE_ITEM,{
-    //  variables: {itemId: jotain},
-  //  refetchQueries: {
-    //  query: FIND_LIST,
-      //variables
-    //}
-  //})
-  //console.log(listResult.data.findList.items.length)
-
-  //console.log(typeof(props.pageProperties.id))
-  console.log(props)
-  //console.log(listResult.data.findList)
-
   if(listResult.loading){
     return <p>loading...</p>
   }
@@ -37,49 +24,43 @@ const EditShoppingList = (props) => {
   const removeList = "removeList"
   const editListUsers = "editListUsers"
   const shoppingList = listResult.data.findList
-  //const shoppingList = props.pageProperties
 
-  //console.log(shoppingList.listMembers)
-  console.log(shoppingList)
   return (
     <div>
-    <button onClick={()=>{
-      {props.selectPageProperties(null)}
-      {props.selectPage(koti)}
-    }}>takaisin</button><br/>
-    Täällä voit editoida listaasi: "{shoppingList.listName}"<br/>
-    Sinulla on {listResult.data.findList.items.length} tuotetta listallasi
-    <div>
       <button onClick={()=>{
-        {props.selectPageProperties(shoppingList)}
-        {props.selectPage(editListUsers)}
+        {props.selectPageProperties(null)}
+        {props.selectPage(koti)}
+      }}>takaisin</button><br/>
 
-      }}>Muokkaa käyttäjiä</button>
-      <button onClick={()=>{
-        {props.selectPageProperties(shoppingList)}
-        {props.selectPage(removeList)}
-      }}>Poista lista</button>
-      {
-        shoppingList.listMembers.length >1 ?
-        <div>Listan käyttäjät:
-          {shoppingList.listMembers.map((member, index) => ( (index ? ', ': '') + member.username ))}
+      Täällä voit editoida listaasi: "{shoppingList.listName}"<br/>
 
-        </div>
-        : <div>listaa ei ole jaettu muille</div>
-      }
-    </div>
+      <div>
+        <button onClick={()=>{
+          {props.selectPageProperties(shoppingList)}
+          {props.selectPage(editListUsers)}
+        }}>Muokkaa käyttäjiä</button>
 
-    <div>
-      Listan tuotteet:
-      {shoppingList.items.map( item =>
-        <div key={item.id}>
-          <Item item={item} open={true} selectPage={props.selectPage} listId={props.pageProperties.id} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} hookItem={props.hookItem} />
-        </div>
-      )}
-    </div>
+        <button onClick={()=>{
+          {props.selectPageProperties(shoppingList)}
+          {props.selectPage(removeList)}
+        }}>Poista lista</button>
 
+        {
+          shoppingList.listMembers.length >1 ?
+          <div>Listan käyttäjät: {shoppingList.listMembers.map((member, index) => ( (index ? ', ': '') + member.username ))} </div>
+          : <div>listaa ei ole jaettu muille</div>
+        }
+      </div>
+
+      <div>
+        Listan tuotteet:
+        {shoppingList.items.map( item =>
+          <div key={item.id}>
+            <Item item={item} open={true} selectPage={props.selectPage} listId={props.pageProperties.id} selectPageProperties={props.selectPageProperties} curSender={shoppingList} selectSender={props.selectSender} hookItem={props.hookItem} />
+          </div>
+        )}
+      </div>
       <AddNewItem listId={props.pageProperties.id} username={props.username}/>
-
     </div>
   )
 }

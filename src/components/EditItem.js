@@ -8,19 +8,17 @@ const EditItem = (props) => {
   const [itemNote, setItemNote] = useState(props.pageProperties.itemNote === null ? "" : props.pageProperties.itemNote)
 
   const [changeItem] = useMutation(EDIT_ITEM, {
-    refetchQueries: [
-      {
+    refetchQueries: [{
       query: FIND_LIST,
       variables: {listId: props.pageProperties.id}
-      }
-    ]
+    }]
   })
 
   const item = props.pageProperties
 
   const submit = async(event) => {
     event.preventDefault()
-    props.selectKontti({itemId:item.id ,itemName, itemNote, itemAmount})
+    props.selectHookItem({itemId:item.id ,itemName, itemNote, itemAmount})
     props.selectPageProperties(props.sender)
     props.selectPage(choosePage)
   }

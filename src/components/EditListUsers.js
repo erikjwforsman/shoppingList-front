@@ -18,6 +18,10 @@ const EditListUsers = (props) => {
     }]
   })
 
+  if(result.loading){
+    return <p>loading...</p>
+  }
+
 {/* Sama haaste poistossa
   Cache data may be lost when replacing the listMembers field of a Shopping_list object.
 
@@ -32,8 +36,8 @@ For more information about these options, please refer to the documentation:
   * Defining custom merge functions: https://go.apollo.dev/c/merging-non-normalized-objects
 
   */}
-
-  const currentlyOnList = result.data.findList.listMembers.filter(m => m.username !== props.user.username)
+  console.log(props)
+  const currentlyOnList = result.data.findList.listMembers.filter(m => m.username !== props.user)
   const currentlyOnListNames = currentlyOnList.map(m => m.username)
 
   const possibleUsers=(props.userContacts)

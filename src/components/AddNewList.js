@@ -1,30 +1,20 @@
 import React, {useState} from "react"
 import {gql, useMutation, useQuery} from "@apollo/client"
-import {ADD_SHOPPINGLIST, FIND_USER, FIND_LIST} from "../queries"
+import {ADD_SHOPPINGLIST, FIND_USER} from "../queries"
 
 const AddNewList = (props) => {
   const [expanded, setExpansion] = useState(null)
   const [listName, setListName] = useState("")
   const [createList] =useMutation(ADD_SHOPPINGLIST,{
-    refetchQueries: [
-      {
-        query: FIND_USER,
-        variables: {nameToSearch: props.username}
-      },
-  //    {
-    //    query: FIND_LIST,
-      //  variables: {listId: props.listId}
-      //}
-    ]
+    refetchQueries: [{
+      query: FIND_USER,
+      variables: {nameToSearch: props.username}
+    }]
   })
 
-  console.log(props)
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
-
-  //createList({ variables:{ username: props.username, listName} } )
-
 
   const submit = async(event) => {
     event.preventDefault()
@@ -35,15 +25,14 @@ const AddNewList = (props) => {
 
   }
 
-  //console.log(props)
-
   if (!expanded){
-    return  <div>
-    <button onClick={() => {
-      toggleExpansion()
-      setListName("")
-    }}>Lisää lista</button>
-            </div>
+    return (
+      <div>
+        <button onClick={() => {
+          toggleExpansion()
+          setListName("")
+        }}>Lisää lista</button>
+      </div>)
   }
 
   return(

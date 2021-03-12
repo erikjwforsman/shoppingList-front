@@ -23,7 +23,6 @@ const ShoppingList = (props) => {
     ]
   })
 
-//  return(<div>Work in progress..</div>)
 
 {/* Mysteerivirheen ohjeet poistettaessa useita:
 
@@ -38,52 +37,43 @@ For more information about these options, please refer to the documentation:
 
   * Ensuring entity objects have IDs: https://go.apollo.dev/c/generating-unique-identifiers
   * Defining custom merge functions: https://go.apollo.dev/c/merging-non-normalized-objects
-
-
   */}
 
   if (resultList.loading){
     return <div>loading...</div>
   }
 
-  let itemsToBeRemoved = []
-
-//console.log(typeof(props.listId))
-  console.log(props);
-  console.log(resultList.data.findList.id)
 
   const toggleExpansion = () => {
     setExpansion(!expanded)
   }
+
+  let itemsToBeRemoved = []
+  const listMembers = resultList.data.findList.listMembers.map(m => m.username)
+
   const onCartCallback = (itemId) => {
     if (!itemsToBeRemoved.includes(itemId)){
       itemsToBeRemoved.push(itemId)
-      console.log(typeof(itemsToBeRemoved[0]))
     } else {
-      console.log(typeof(itemId))
       itemsToBeRemoved = itemsToBeRemoved.filter(item => item !== itemId)
     }
   }
 
-//MUUTETTAVA => shoppingList
   const removeItems = async() => {
-    if (itemsToBeRemoved.length<1){
-      console.log("Tämäkin toimii")
+    //Tässä bugi, korjaa jossain vaiheessa
+    //Eli rivin 101 id ei vissiin ehdi mukaan
+    //aiheutuu kun automaattinen refetch pärähtää ennen viimeisen poistoa => Tuo REMOVE_MANY?
+    if (itemsToBeRemoved.length<1) {
+      window.alert("Et ole valinnut poistettavia tuotteita")
     } else {
       for (const i of itemsToBeRemoved){
+        console.log(i)
         await removeItem({ variables: {listId:resultList.data.findList.id, itemId: i} })
       }
-    //js muuttaa arrayn olioksi ja se ei sovi gql:n tyyppiin?
-    //await removeMany({variables: {listId:props.shoppingList.id, itemIds:itemsToBeRemoved}})
       itemsToBeRemoved.length = 0
     }
   }
 
-  //Valmis
-  //const listMembers = props.shoppingList.listMembers.map(m => m.username)
-  const listMembers = resultList.data.findList.listMembers.map(m => m.username)
-
-  //console.log(listMembers)
 
   const siirtymä = "editShoppingList"
 
