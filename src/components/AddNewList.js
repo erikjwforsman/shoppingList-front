@@ -17,11 +17,16 @@ const AddNewList = (props) => {
   }
 
   const submit = async(event) => {
-    event.preventDefault()
-    console.log(props.username)
-    console.log(listName)
-    createList({ variables:{ username: props.username, listName} } )
-    setListName("")
+    if (listName.length < 2){
+      window.alert("Listan nimen tulee olla vähintään kaksi merkkiä pitkä")
+      //Tee oma showMessage tyyppinen ratkaisu ja estä reload
+    } else {
+      event.preventDefault()
+      console.log(props.username)
+      console.log(listName)
+      createList({ variables:{ username: props.username, listName} } )
+      setListName("")
+    }
 
   }
 
@@ -38,7 +43,7 @@ const AddNewList = (props) => {
   return(
     <div>
       <button onClick={() => toggleExpansion() }>Peru lista</button><br/>
-      <form onSubmit = {submit}>
+      <form onSubmit = {submit} style={{backgroundColor:"lightgreen"}}>
         <div>
           Listan nimi: <input value={listName}
             onChange ={ ({target}) => setListName(target.value) }

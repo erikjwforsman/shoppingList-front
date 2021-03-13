@@ -5,11 +5,13 @@ import User from "./components/User"
 import { FIND_USER } from "./queries"
 
 import Main from "./components/Main"
+import Contacts from "./components/Contacts"
 import EditShoppingList from "./components/EditShoppingList"
 import AddNewList from "./components/AddNewList"
 import EditItem from "./components/EditItem"
 import RemoveList from "./components/RemoveList"
 import EditListUsers from "./components/EditListUsers"
+import styles from "./AppStyles.module.css"
 
 const App = () => {
   const [token, setToken] = useState(null)
@@ -89,13 +91,18 @@ const App = () => {
     setItemHook(asiaa)
   }
 
+  console.log(styles.testi)
+
   return (
     <div>
-      <div>
+    {/*Appin yläosan asetukset tänne*/}
+      <div style={{backgroundColor: "gray"}}>
         {user}
         <button onClick={logOut} >logout</button>
+        <Contacts user={user} contacts={contacts}/>
       </div>
-      <div>
+      {/*Appin pääosan taustaväri tänne*/}
+      <div style={{backgroundColor: "lightblue"}}>
         <Choice />
       </div>
     </div>
