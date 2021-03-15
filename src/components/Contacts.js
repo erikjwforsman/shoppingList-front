@@ -7,12 +7,15 @@ const Contacts = (props) => {
     setExpansion(!expanded)
   }
 
+  const listOfContacts = props.contacts.map(c =>c.username)
+  console.log(listOfContacts)
+
   const showContacts = () => {
     if (expanded) {
       return(
         <div>
           <button onClick={toggleExpansion}>Pienennä</button>
-          { props.contacts.map(c =><div key={c.id}>*{c.username}</div>) }
+          { props.contacts.map(c =><span key={c.id}> {c.username} </span>) }
         </div>
       )
     }

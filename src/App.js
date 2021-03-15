@@ -11,6 +11,9 @@ import AddNewList from "./components/AddNewList"
 import EditItem from "./components/EditItem"
 import RemoveList from "./components/RemoveList"
 import EditListUsers from "./components/EditListUsers"
+import Credits from "./components/Credits"
+
+
 import styles from "./AppStyles.module.css"
 
 const App = () => {
@@ -91,19 +94,22 @@ const App = () => {
     setItemHook(asiaa)
   }
 
-  console.log(styles.testi)
+  //console.log(styles.testi)
 
   return (
-    <div>
+    <div >
     {/*Appin yläosan asetukset tänne*/}
-      <div style={{backgroundColor: "gray"}}>
-        {user}
-        <button onClick={logOut} >logout</button>
+      <div className={styles.tin}>
+        <h3>{user}
+        <button onClick={logOut} >logout</button></h3>
         <Contacts user={user} contacts={contacts}/>
       </div>
       {/*Appin pääosan taustaväri tänne*/}
-      <div style={{backgroundColor: "lightblue"}}>
+      <div className={styles.tausta}>
         <Choice />
+      </div>
+      <div>
+        <Credits />
       </div>
     </div>
   )

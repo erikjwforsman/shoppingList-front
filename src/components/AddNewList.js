@@ -2,6 +2,8 @@ import React, {useState} from "react"
 import {gql, useMutation, useQuery} from "@apollo/client"
 import {ADD_SHOPPINGLIST, FIND_USER} from "../queries"
 
+import styles from "../AppStyles.module.css"
+
 const AddNewList = (props) => {
   const [expanded, setExpansion] = useState(null)
   const [listName, setListName] = useState("")
@@ -33,7 +35,7 @@ const AddNewList = (props) => {
   if (!expanded){
     return (
       <div>
-        <button onClick={() => {
+        <button className={styles.lisaaLista} onClick={() => {
           toggleExpansion()
           setListName("")
         }}>Lisää lista</button>
@@ -42,14 +44,16 @@ const AddNewList = (props) => {
 
   return(
     <div>
-      <button onClick={() => toggleExpansion() }>Peru lista</button><br/>
-      <form onSubmit = {submit} style={{backgroundColor:"lightgreen"}}>
-        <div>
+      <form onSubmit = {submit} >
+        <div className={styles.lisaaListainput}>
           Listan nimi: <input value={listName}
             onChange ={ ({target}) => setListName(target.value) }
           />
         </div>
-        <button>Tallenna lista</button>
+        <div className={styles.lisaaListaButtons}>
+        <button className={styles.lisaaListaButtonLeft} type="submit">Tallenna lista</button>
+        <button className={styles.lisaaListaButtonRight} onClick={() => toggleExpansion() }>Peru lista</button><br/>
+        </div>
       </form>
     </div>
 

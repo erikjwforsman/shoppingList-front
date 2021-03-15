@@ -1,3 +1,164 @@
 .testi{
   color: red;
 }
+
+/*Ostoslistan asetukset*/
+.openListButton{
+  background-color: #026670;
+  margin-top: 10px;
+  margin-left: 2.5%;
+  border: solid, black, 1px;
+  width: 95%;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+}
+.whenListOpenned{
+  margin-left: 2.5%;
+}
+.closeListButton{
+  background-color: #026670;
+
+  margin-top: 10px;
+  border: solid, black, 1px;
+  width: 65%;
+  color: white;
+  padding: 15px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.editListButton{
+  background-color: #026670;
+  margin-top: 10px;
+  border: solid, black, 1px;
+  width: 32.5%;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.listanTausta{
+  background-color: #9FEDD7;
+  width: 95%;
+  border-left: solid, 1px, black;
+  border-right: solid, 1px, black;
+  margin-left: 2.5%;
+}
+.removeMany{
+  background-color: #CF6766;
+  width: 97.5%;
+
+}
+.lisaaLista{
+  background-color: #FCE181;
+  margin-top: 20px;
+  margin-left: 2.5%;
+  border: solid, black, 1px;
+  width: 95%;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.lisaaListainput{
+  text-align: center;
+  background-color: lightgreen;
+  margin-left: 2.5%;
+  width: 95%;
+  padding: 15px 0px;
+  margin-top: 20px;
+}
+.lisaaListaButtonLeft{
+  background-color: #FCE181;
+  margin-left: 2.5%;
+  border: solid, black, 1px;
+  width: 47.5%;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.lisaaListaButtonRight{
+  background-color: #FCE181;
+  border: solid, black, 1px;
+  width: 47.5%;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.testicredits{
+  color: black;
+  background-color: #FEF9C7;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/*Värimaailma*/
+
+/*Tummanvihreä*/
+.tummanvihrea{
+  background-color: #026670;
+}
+
+/*Vaaleanvihreä*/
+.vaalenavihrea{
+  background-color: #9FEDD7;
+  width: 95%;
+}
+
+/*Vaaleankeltainen*/
+.credits{
+  background-color: #FEF9C7;
+}
+
+/*Tummankeltainen*/
+.tummanKeltainen{
+  background-color: #FCE181;
+}
+
+.tausta{
+  background-color: #F4F4F4;
+}
+
+/*Vaaleanharmaa*/
+.vaaleanharmaa{
+  background-color: #EDEAE5;
+}
+
+/*Otsikkovaihtoehdot*/
+.forrest{
+  background-color: #1E392A;
+}
+.tin{
+  background-color: #828081;
+}
+
+/*Poistovaihtoehdot*/
+.coral{
+  background-color: #FF5330;
+}
+
+.crimson{
+  background-color: #CF6766;
+}

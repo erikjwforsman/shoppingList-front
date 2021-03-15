@@ -83,9 +83,9 @@ For more information about these options, please refer to the documentation:
       return (
         <div>
         {/* Tyyli: avattu lista yläpuolikas */}
-        <div style={{backgroundColor: "green"}}>
-        <button onClick={toggleExpansion}>{resultList.data.findList.listName} sulje</button>
-        <button onClick={() =>{
+        <div className={styles.whenListOpenned}>
+        <button className={styles.closeListButton} onClick={toggleExpansion}>{resultList.data.findList.listName} sulje</button>
+        <button className={styles.editListButton} onClick={() =>{
           {props.selectPageProperties(resultList.data.findList)}
           {props.selectPage(siirtymä)}
         }}>Editoi listaa</button><br/>
@@ -94,7 +94,7 @@ For more information about these options, please refer to the documentation:
         {/* Tyyli: avattu lista alapuolikas
           Listan käyttäjät mihin???
           */}
-        <div style={{backgroundColor: "lightgreen"}}>
+        <div className={styles.listanTausta}>
         <div>
           {
             listMembers.length >1 ?
@@ -112,15 +112,15 @@ For more information about these options, please refer to the documentation:
         </div>
 
         {/* Tyyli: poista useita listalta */}
-        <div style={{backgroundColor: "lightgreen"}}>
-        <button style={{backgroundColor: "red"}} onClick={()=>{removeItems()}}>Päivitä poimitut tuottet</button>
+        <div className={styles.whenListOpenned}>
+        <button className={styles.removeMany} onClick={()=>{removeItems()}}>Päivitä poimitut tuottet</button>
         </div>
         </div>
       )
     }
     return (
-      <div style={{backgroundColor: "blue"}}>
-         <button onClick={toggleExpansion}>{resultList.data.findList.listName} avaa</button>
+      <div >
+         <button className={styles.openListButton} onClick={toggleExpansion}>{resultList.data.findList.listName} avaa</button>
       </div>
     )
   }
