@@ -78,7 +78,12 @@ For more information about these options, please refer to the documentation:
 
   const siirtymä = "editShoppingList"
 
+  console.log(resultList.data.findList.items)
+
   const showItems = () => {
+
+
+
     if (expanded){
       return (
         <div>
@@ -95,7 +100,7 @@ For more information about these options, please refer to the documentation:
           Listan käyttäjät mihin???
           */}
         <div className={styles.listanTausta}>
-        <div>
+        <div style={{marginLeft:5}}>
           {
             listMembers.length >1 ?
             <div>Listan käyttäjät:
@@ -103,6 +108,9 @@ For more information about these options, please refer to the documentation:
             </div>
             : null
           }
+        </div>
+        <div style={{marginLeft:5}}>
+          &#x1F6D2;
         </div>
         {resultList.data.findList.items.map( item =>
           <div key={item.id}>

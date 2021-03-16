@@ -22,7 +22,11 @@ const AddNewList = (props) => {
     if (listName.length < 2){
       window.alert("Listan nimen tulee olla vähintään kaksi merkkiä pitkä")
       //Tee oma showMessage tyyppinen ratkaisu ja estä reload
-    } else {
+    } else if (listName.length>30) {
+      window.alert("Listan nimi ei voi olla yli 30 merkkiä pitkä")
+
+    }
+    else {
       event.preventDefault()
       console.log(props.username)
       console.log(listName)

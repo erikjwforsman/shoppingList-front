@@ -36,7 +36,7 @@
 .editListButton{
   background-color: #026670;
   margin-top: 10px;
-  border: solid, black, 1px;
+  border: solid, black, 2px;
   width: 32.5%;
   color: white;
   padding: 15px 32px;
@@ -48,20 +48,25 @@
 .listanTausta{
   background-color: #9FEDD7;
   width: 95%;
-  border-left: solid, 1px, black;
-  border-right: solid, 1px, black;
+  border-right: solid ,1px black;
+  border-left: solid ,1px black;
+
   margin-left: 2.5%;
 }
 .removeMany{
   background-color: #CF6766;
   width: 97.5%;
+  height: 40px;
+  border-radius: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 
 }
 .lisaaLista{
   background-color: #FCE181;
   margin-top: 20px;
   margin-left: 2.5%;
-  border: solid, black, 1px;
+  border: solid, black 1px;
   width: 95%;
   color: black;
   padding: 15px 32px;
@@ -79,6 +84,8 @@
   width: 95%;
   padding: 15px 0px;
   margin-top: 20px;
+  border: solid, black, 1px;
+
 }
 .lisaaListaButtonLeft{
   background-color: #FCE181;
@@ -115,6 +122,48 @@
 }
 
 /*Värimaailma*/
+.flexu{
+  display: flex;
+}
+
+.singleItem{
+    /*background-color: #828081;*/
+    margin-top: 5px;
+    margin-left: 0px;
+    border-radius: 25px;
+}
+.itemCartButton{
+  border: 3px solid #026670;
+  min-height: 40px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 7px 0px 7px 10px;
+  width: 50%;
+  text-align: left;
+  background-color: #FEF9C7;
+  margin-bottom: 5px;
+  display: inline;
+}
+
+.itemInfoButton{
+  
+  height: 40px;
+  width: 15%;
+  padding: 7px 0px 7px 0px;
+  background-color: #FCE181;
+
+}
+.itemInfo{
+  background-color: #FEF9C7;
+  height: 40px;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 47.5%;
+  text-align: left;
+  padding-left: 2.5%;
+  padding-top: 5px;
+}
+
 
 /*Tummanvihreä*/
 .tummanvihrea{

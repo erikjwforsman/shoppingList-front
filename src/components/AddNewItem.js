@@ -20,14 +20,23 @@ const AddNewItem = (props) => {
 
   const submit = async(event) => {
     event.preventDefault()
-    console.log(props.listId)
-    console.log(itemName)
-    console.log(itemAmount)
-    console.log(itemNote)
-    createItem({ variables: { listId: props.listId, itemName, itemAmount, itemNote }})
-    setItemName("")
-    setItemAmount("")
-    setItemNote("")
+    if (itemNote.length>40){
+      console.log("Viestin tulee olla alle 40 merkkiä pitkä")
+      window.alert("Viestin tulee olla alle 40 merkkiä pitkä")
+    } else if (itemName.length>25) {
+      window.alert("Tuotteen nimen tulee olla alle 25 merkkiä pitkä")
+    } else if (itemAmount.length>15) {
+      window.alert("Määrän tulee olla alle 15 merkkiä pitkä")
+    } else {
+      console.log(props.listId)
+      console.log(itemName)
+      console.log(itemAmount)
+      console.log(itemNote)
+      createItem({ variables: { listId: props.listId, itemName, itemAmount, itemNote }})
+      setItemName("")
+      setItemAmount("")
+      setItemNote("")
+    }
   }
 
   if(!expanded){

@@ -18,9 +18,20 @@ const EditItem = (props) => {
 
   const submit = async(event) => {
     event.preventDefault()
+    if (itemNote.length>40){
+      console.log("Viestin tulee olla alle 40 merkkiä pitkä")
+      window.alert("Viestin tulee olla alle 40 merkkiä pitkä")
+    } else if (itemName.length>25) {
+      window.alert("Tuotteen nimen tulee olla alle 25 merkkiä pitkä")
+    } else if (itemAmount.length>15) {
+      window.alert("Määrän tulee olla alle 15 merkkiä pitkä")
+    }
+
+    else {
     props.selectHookItem({itemId:item.id ,itemName, itemNote, itemAmount})
     props.selectPageProperties(props.sender)
     props.selectPage(choosePage)
+    }
   }
 
   const choosePage = "editShoppingList"

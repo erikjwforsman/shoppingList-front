@@ -2,6 +2,8 @@ import React, {useState} from "react"
 //import RemoveItem from "./RemoveItem" Saa poistaa eriytetyn poistonäkymän
 import {gql, useMutation} from "@apollo/client"
 import {REMOVE_ITEM, FIND_USER, FIND_LIST, EDIT_ITEM} from "../queries"
+
+import styles from "../AppStyles.module.css"
 //Väli poisto
 //  //  //  //  //
 // Korjaa poiston ongelma:
@@ -82,30 +84,28 @@ const Item = (props) => {
 
     if (!props.item.itemNote){
       if(onCart) {
-        return <div><s>{props.item.itemName} {props.item.itemAmount}</s><button onClick={togglePickUp}>Poista korista</button></div>
+        return <div className={styles.singleItem}><button className={styles.itemCartButton} onClick={togglePickUp}>- <s>{props.item.itemName} {props.item.itemAmount}</s></button></div>
       }
-      return (<div>{props.item.itemName} {props.item.itemAmount}<button onClick={togglePickUp}>Lisää koriin</button></div>)
+      return (<div className={styles.singleItem}><button className={styles.itemCartButton} onClick={togglePickUp}>+ {props.item.itemName} {props.item.itemAmount}</button></div>)
     }
 
     if (!expanded){
       if(onCart) {
-        return <div><s>{props.item.itemName} {props.item.itemAmount}</s><button onClick={toggleExpansion}>Auki</button><button onClick={togglePickUp}>Poista korista</button></div>
+        return <div className={styles.singleItem}><button className={styles.itemCartButton} onClick={togglePickUp}>- <s>{props.item.itemName} {props.item.itemAmount}</s></button><button className={styles.itemInfoButton} onClick={toggleExpansion}>Tiedot</button></div>
       }
-      return (<div>{props.item.itemName} {props.item.itemAmount}<button onClick={toggleExpansion}>Auki</button><button onClick={togglePickUp}>Lisää koriin</button></div>)
+      return (<div className={styles.singleItem}><button className={styles.itemCartButton} onClick={togglePickUp}>+ {props.item.itemName} {props.item.itemAmount}</button><button className={styles.itemInfoButton} onClick={toggleExpansion}>Tiedot</button></div>)
 
     } else {
       if(onCart) {
         return (
-          <div>
-            <div><s>{props.item.itemName} {props.item.itemAmount}</s><button onClick={toggleExpansion}>Kiinni</button><button onClick={togglePickUp}>Poista korista</button></div>
-            <div>{props.item.itemNote}</div>
+          <div className={styles.singleItem}>
+            <div><button className={styles.itemCartButton} onClick={togglePickUp}>- <s>{props.item.itemName} {props.item.itemAmount} </s><br/><br/>{props.item.itemNote}</button><button className={styles.itemInfoButton} onClick={toggleExpansion}>Sulje</button></div>
           </div>
         )
       }
       return (
-        <div>
-          <div>{props.item.itemName} {props.item.itemAmount}<button onClick={toggleExpansion}>Kiinni</button><button onClick={togglePickUp}>Lisää koriin</button></div>
-          <div>{props.item.itemNote}</div>
+        <div className={styles.singleItem}>
+          <div><button className={styles.itemCartButton} onClick={togglePickUp}>+ {props.item.itemName} {props.item.itemAmount} <br/><br/>{props.item.itemNote}</button><button className={styles.itemInfoButton} onClick={toggleExpansion}>Sulje</button></div>
         </div>
       )
     }
