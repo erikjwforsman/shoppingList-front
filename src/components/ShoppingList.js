@@ -14,7 +14,14 @@ const ShoppingList = (props) => {
   const [expanded, setExpansion] = useState(null)
   const [page, setPage] = useState("")
 
-  const [removeMany] = useMutation(REMOVE_MANY)
+  const [removeMany] = useMutation(REMOVE_MANY, {
+    refetchQueries:[
+      {
+        query: FIND_LIST,
+        variables: {listId: props.listId}
+      }
+    ]
+  })
   const [removeItem] = useMutation(REMOVE_ITEM, {
     refetchQueries:[
       {
@@ -25,7 +32,7 @@ const ShoppingList = (props) => {
   })
 
 
-{/* Mysteerivirheen ohjeet poistettaessa useita:
+{/* Korjaa tämä jossain vaiheessa
 
   Cache data may be lost when replacing the items field of a Shopping_list object.
 
@@ -61,17 +68,16 @@ For more information about these options, please refer to the documentation:
   }
 
   const removeItems = async() => {
-    //Tässä bugi, korjaa jossain vaiheessa
+    //Tässä bugi, korjaa jossain vaiheessa // KORJATTU
     //Eli rivin 101 id ei vissiin ehdi mukaan
     //aiheutuu kun automaattinen refetch pärähtää ennen viimeisen poistoa => Tuo REMOVE_MANY?
     if (itemsToBeRemoved.length<1) {
       window.alert("Et ole valinnut poistettavia tuotteita")
     } else {
-      for (const i of itemsToBeRemoved){
-        console.log(i)
-        await removeItem({ variables: {listId:resultList.data.findList.id, itemId: i} })
-      }
+
+      await removeMany({variables: {listId: resultList.data.findList.id, itemIds: itemsToBeRemoved}})
       itemsToBeRemoved.length = 0
+      console.log(itemsToBeRemoved)
     }
   }
 
