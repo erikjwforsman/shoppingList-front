@@ -46,6 +46,8 @@ const App = () => {
     return <p>loading...</p>
   }
 
+  console.log(result.data)
+
   const logOut = () => {
     setToken(null)
     setUser(null)
